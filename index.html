@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Nitesh Sharma — a Computer Science student building with data, technology, and curiosity." />
+    <meta name="theme-color" content="#f6f1e9" />
+    <meta property="og:title" content="Nitesh Sharma — a corner of the internet" />
+    <meta property="og:description" content="Computer Science student, curious about data, technology, and whatever comes next." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary" />
+    <title>Nitesh Sharma — a corner of the internet</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="grain" aria-hidden="true"></div>
+    <header class="site-header">
+      <a class="wordmark" href="#me" data-view-link="me" aria-label="Nitesh Sharma home">
+        <span>Nitesh Sharma</span>
+        <small>learning in public, mostly</small>
+      </a>
+      <nav class="view-nav" aria-label="Primary navigation">
+        <button class="view-button is-active" data-view="me" aria-pressed="true">Me</button>
+        <button class="view-button" data-view="work" aria-pressed="false">Work</button>
+        <button class="view-button" data-view="thoughts" aria-pressed="false">Thoughts</button>
+      </nav>
+      <span class="header-mark" aria-hidden="true">✳</span>
+    </header>
+
+    <main id="main-content">
+      <section class="view-panel is-active" data-panel="me" aria-labelledby="me-title">
+        <div class="me-intro">
+          <div class="intro-copy">
+            <p class="eyebrow">Hello, I'm Nitesh <span class="eyebrow-dot"></span></p>
+            <h1 id="me-title">Still figuring it out.<br /><em>Enjoying the process.</em></h1>
+            <p class="lede">I'm studying Computer Science, building things when an idea feels worth trying, and slowly figuring out what I want to get really good at.</p>
+            <p class="lede lede-small">This is my little corner of the internet — part notebook, part workbench, part honest record of what I'm curious about.</p>
+            <div class="intro-actions">
+              <button class="text-link" data-view-jump="work">See what I've been building <span>↗</span></button>
+              <span class="location-note">Based in India · <span id="current-date">September 2026</span></span>
+            </div>
+          </div>
+          <figure class="portrait-wrap">
+            <div class="portrait-frame">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=85" alt="Portrait placeholder for Nitesh Sharma" />
+              <span class="portrait-caption">somewhere between<br />thinking &amp; doing</span>
+            </div>
+            <figcaption>Currently: making sense of messy ideas.</figcaption>
+          </figure>
+        </div>
+
+        <div class="section-rule"></div>
+        <section class="currently-section" aria-labelledby="currently-title">
+          <div class="section-heading">
+            <p class="eyebrow">A live snapshot</p>
+            <h2 id="currently-title">Currently<span class="accent">.</span></h2>
+          </div>
+          <div class="snapshot-list" id="snapshot-list"></div>
+        </section>
+
+        <section class="about-strip">
+          <div class="about-label">A little more<br />about me</div>
+          <div class="about-copy">
+            <p>I'm interested in the space where <strong>data becomes useful</strong> and technology becomes a little more human. I like the quiet satisfaction of a clean dataset, the chaos of a first prototype, and the moment a confusing thing finally clicks.</p>
+            <p>Outside of code, you'll probably find me watching a movie, collecting a new song, or going down an oddly specific internet rabbit hole. I don't have a five-year plan. I do have a running list of things I want to understand.</p>
+          </div>
+          <span class="scribble" aria-hidden="true">✳</span>
+        </section>
+
+        <section class="updates-section" aria-labelledby="updates-title">
+          <div class="section-heading inline-heading">
+            <div><p class="eyebrow">Small notes from the road</p><h2 id="updates-title">Life updates<span class="accent">.</span></h2></div>
+            <span class="section-aside">in chronological order</span>
+          </div>
+          <div id="updates-list" class="updates-list"></div>
+        </section>
+      </section>
+
+      <section class="view-panel" data-panel="work" aria-labelledby="work-title" hidden>
+        <div class="view-hero">
+          <p class="eyebrow">The professional side</p>
+          <h1 id="work-title">Things I've <em>made.</em></h1>
+          <p class="lede">A collection of projects, experiments, and skills picked up by making real things — not by collecting percentages.</p>
+        </div>
+        <section class="projects-section" aria-labelledby="projects-title">
+          <div class="section-heading inline-heading"><div><p class="eyebrow">Selected work</p><h2 id="projects-title">Projects<span class="accent">.</span></h2></div><span class="section-aside">click a project to open it</span></div>
+          <div class="projects-list" id="projects-list"></div>
+        </section>
+        <div class="work-grid">
+          <section class="skills-section" aria-labelledby="skills-title"><p class="eyebrow">The toolkit</p><h2 id="skills-title">Skills<span class="accent">.</span></h2><div id="skills-list" class="skills-list"></div></section>
+          <section class="credentials-section" aria-labelledby="education-title"><p class="eyebrow">The groundwork</p><h2 id="education-title">Education &amp; credentials<span class="accent">.</span></h2><div class="education-item"><span class="item-year">Education</span><h3>B.Tech Computer Science Engineering</h3><p>K.R. Mangalam University</p></div><div class="credential-list" id="credential-list"></div><a class="button-link" href="#" aria-label="View resume">View Resume <span>↗</span></a></section>
+        </div>
+      </section>
+
+      <section class="view-panel" data-panel="thoughts" aria-labelledby="thoughts-title" hidden>
+        <div class="view-hero thoughts-hero"><p class="eyebrow">Notes, questions &amp; rabbit holes</p><h1 id="thoughts-title">Things I'm <em>thinking about.</em></h1><p class="lede">Not a blog exactly. More like a place to put things before they disappear — lessons, observations, and the occasional unfinished thought.</p></div>
+        <section class="thoughts-section" aria-labelledby="writing-title"><div class="section-heading inline-heading"><div><p class="eyebrow">From the notebook</p><h2 id="writing-title">Recent thoughts<span class="accent">.</span></h2></div><span class="section-aside">updated when I have something to say</span></div><div class="thoughts-list" id="thoughts-list"></div></section>
+      </section>
+    </main>
+
+    <footer class="site-footer"><span>© <span id="year">2026</span> Nitesh Sharma</span><span>Made with curiosity, not a template.</span><a href="mailto:hello@niteshsharma.dev">Say hello <span>↗</span></a></footer>
+    <script src="script.js"></script>
+  </body>
+</html>
