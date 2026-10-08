@@ -12,3 +12,5 @@
 .eyebrow,.about-label{font-size:13px}
 .location-note,.section-aside,.portrait-wrap figcaption{font-size:14px}
 .snapshot-label,.project-number,.skill-group h3,.item-year,.thought time{font-size:13px}
+.experience-section{margin-top:115px}.experience-list{border-top:1px solid var(--line)}.experience-item{display:grid;grid-template-columns:280px 1fr;gap:40px;padding:24px 0;border-bottom:1px solid var(--line)}.experience-item h3{font-size:20px;letter-spacing:-.03em;font-weight:500;margin:0 0 4px}.experience-item>p{font-size:14px;color:#4b4a43;margin:0;max-width:650px}
+.wordmark{font-size:22px}.wordmark small{font-size:14px}.view-button{font-size:14px}.eyebrow,.about-label{font-size:13px}.location-note,.section-aside,.portrait-wrap figcaption{font-size:14px}.snapshot-label,.project-number,.skill-group h3,.item-year,.thought time{font-size:13px}@media(max-width:700px){.experience-item{grid-template-columns:1fr;gap:8px}}

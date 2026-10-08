@@ -1,27 +1,27 @@
 const content = {
   snapshots: [
-    ["Learning", "Python, SQL, and the small decisions that make data useful."],
-    ["Building", "A few projects that started as “I wonder if…”"],
-    ["Thinking about", "What to get really good at next — without rushing it."],
-    ["Reading / watching", "Good stories, messy datasets, and anything that teaches me something."],
-    ["Goals", "Ship more often. Keep the work honest. Stay curious."]
+    ["Learning", "Python, SQL, and the craft of turning data into useful insights."],
+    ["Building", "Data-driven projects and practical AI applications."],
+    ["Thinking about", "Data analytics, business intelligence, and prompt engineering."],
+    ["Working with", "Messy datasets, dashboards, visualizations, and real-world questions."],
+    ["Goals", "Keep improving, keep building, and make analysis easier to understand."]
   ],
   updates: [
-    ["September 2026", "Been spending more time figuring out what I actually want to build rather than trying to learn everything at once."],
-    ["August 2026", "Started treating this website less like a finished product and more like a place I can keep returning to."]
+    ["2026", "Building practical projects with Python, SQL, exploratory data analysis, and AI tools."],
+    ["2025", "Completed data analytics simulations with Deloitte and Accenture through Forage."]
   ],
   projects: [
-    ["01", "QPGen", "AI Question Paper Generator", "A project exploring how a useful question paper workflow could be supported with AI.", ["Python", "Flask", "SQLAlchemy", "JWT", "Google Gemini API"]],
-    ["02", "Netflix Movies & TV Shows Analysis", "Exploring a catalogue of stories", "An exploratory data analysis project using a Netflix movies and TV shows dataset.", ["Python", "Pandas", "NumPy", "EDA"]],
-    ["03", "AIQE", "Adaptive Image Quality Enhancer", "An experiment focused on improving image quality adaptively.", ["Python"]],
-    ["04", "MedPoint", "Hospital and appointment management", "A hospital and appointment management application.", ["Web application"]],
-    ["05", "Bharat Bazaar", "E-commerce web application", "An e-commerce web application built to explore the shape of an online marketplace.", ["Web application"]],
-    ["06", "Verification Portal", "Certificate verification platform", "A QR-based certificate verification platform with admin functionality.", ["Web application", "QR verification"]]
+    ["01", "Netflix Movies & TV Shows Analysis", "Exploring 8,800+ records", "Cleaned and analyzed a Netflix dataset to identify trends across genres, ratings, release years, and content. Created visualizations with Matplotlib and Seaborn.", ["Python", "Pandas", "NumPy", "EDA", "Matplotlib", "Seaborn"]],
+    ["02", "QPGen", "AI Question Paper Generator", "Integrated the Google Gemini API to generate exam-oriented questions from syllabus input, with structured prompts, validation, retry logic, and JWT-based authentication.", ["Python", "Google Gemini API", "Prompt Engineering", "JWT"]]
   ],
   skills: [
-    ["Languages", "Python · SQL"], ["Data", "Pandas · NumPy · EDA · Matplotlib"], ["Analytics", "Power BI · Excel"], ["Development", "Flask · REST APIs · SQLAlchemy · JWT"], ["Tools", "Git · GitHub · Jupyter"], ["Database", "PostgreSQL"]
+    ["Programming", "Python · SQL"], ["Data Analysis", "Pandas · NumPy · Exploratory Data Analysis"], ["Data Visualization", "Power BI · Matplotlib"], ["Tools", "Git · GitHub · Jupyter Notebook · Google Colab · Microsoft Excel"]
   ],
-  credentials: ["Microsoft Azure AZ-900", "Microsoft Excel: Preparing Data for Analysis", "IBM Applied Data Science with Python", "Accenture Data Analytics & Visualization Job Simulation", "Deloitte Data Analytics Job Simulation"],
+  experience: [
+    ["Data Analyst — Deloitte", "Virtual Job Simulation · Completed 2025", "Built an interactive dashboard for data analysis and forensic technology use cases. Used advanced Excel functions, pivot tables, and conditional formatting to clean, classify, and analyze datasets."],
+    ["Data Analyst — Accenture", "Virtual Job Simulation · Completed 2025", "Cleaned, modeled, and analyzed seven datasets to identify trends in user engagement and content performance, then communicated findings through a presentation and video."]
+  ],
+  credentials: ["Microsoft Certified: Azure Data Fundamentals (AZ-900) — September 2025", "Data Analytics & Visualization — Accenture (Forage Simulation)", "Data Analytics with Tableau and Excel — Deloitte (Forage Simulation)", "Preparing Data for Analysis with Microsoft Excel — Microsoft (Coursera)", "Harnessing the Power of Data with Power BI — Microsoft (Coursera)"],
   thoughts: [
     ["September 2026", "Why I stopped trying to learn everything at once", "There is a strange comfort in admitting that a direction can be discovered by moving, not just by planning. I’m learning to choose the next useful thing instead of trying to understand the whole map."],
     ["August 2026", "What building QPGen taught me about actually shipping software", "The first version is allowed to be smaller than the idea in your head. Getting something into the hands of another person teaches you things a tutorial never can."],
@@ -34,6 +34,7 @@ const render = () => {
   $("#snapshot-list").innerHTML = content.snapshots.map(([label, text]) => `<article class="snapshot-item"><span class="snapshot-label">${label}</span><p>${text}</p></article>`).join("");
   $("#updates-list").innerHTML = content.updates.map(([date, text]) => `<article class="update"><time>${date}</time><p>${text}</p></article>`).join("");
   $("#projects-list").innerHTML = content.projects.map(([number, name, summary, description, tech]) => `<article class="project"><div class="project-head"><span class="project-number">${number}</span><div><h3>${name}</h3><p class="project-summary">${summary}</p></div><span class="project-toggle" aria-hidden="true">+</span></div><div class="project-detail"><p>${description}</p><div class="tech-list">${tech.map(item => `<span>${item}</span>`).join("")}</div></div></article>`).join("");
+  $("#experience-list").innerHTML = content.experience.map(([title, summary, description]) => `<article class="experience-item"><div><h3>${title}</h3><p class="project-summary">${summary}</p></div><p>${description}</p></article>`).join("");
   $("#skills-list").innerHTML = content.skills.map(([label, list]) => `<div class="skill-group"><h3>${label}</h3><p>${list}</p></div>`).join("");
   $("#credential-list").innerHTML = content.credentials.map(item => `<div class="credential">${item}</div>`).join("");
   $("#thoughts-list").innerHTML = content.thoughts.map(([date, title, body]) => `<article class="thought"><time>${date}</time><div><h3>${title}</h3><p>Click to read the note</p></div><span class="thought-arrow">↘</span><div class="thought-body">${body}</div></article>`).join("");
