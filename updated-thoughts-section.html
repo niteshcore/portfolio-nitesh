@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Current Thoughts Section — Nitesh Sharma</title>
+    <style>
+      :root {
+        --paper: #f6f1e9;
+        --ink: #242522;
+        --muted: #736e64;
+        --line: #d9d0c2;
+        --terracotta: #b8654c;
+        --serif: Georgia, "Times New Roman", serif;
+        --sans: Arial, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: var(--sans);
+        font-size: 16px;
+        line-height: 1.6;
+      }
+
+      .thoughts-section {
+        width: min(1180px, calc(100% - 64px));
+        margin: 0 auto;
+        padding: 82px 0 110px;
+      }
+
+      .thoughts-hero {
+        max-width: 860px;
+        margin-bottom: 110px;
+      }
+
+      .eyebrow {
+        margin: 0 0 22px;
+        color: var(--muted);
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1 {
+        margin-bottom: 28px;
+        font-size: clamp(50px, 6.3vw, 84px);
+        font-weight: 500;
+        letter-spacing: -0.065em;
+        line-height: 1.02;
+      }
+
+      h1 em,
+      h2 em {
+        color: var(--terracotta);
+        font-family: var(--serif);
+        font-weight: 400;
+        letter-spacing: -0.03em;
+      }
+
+      .lede {
+        max-width: 570px;
+        margin-bottom: 16px;
+        color: #4b4a43;
+        font-size: 19px;
+        line-height: 1.55;
+      }
+
+      .inline-heading {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+      }
+
+      h2 {
+        margin-bottom: 38px;
+        font-size: clamp(36px, 4vw, 52px);
+        font-weight: 500;
+        letter-spacing: -0.06em;
+        line-height: 1;
+      }
+
+      .accent {
+        color: var(--terracotta);
+      }
+
+      .section-aside {
+        margin-bottom: 44px;
+        color: var(--muted);
+        font-size: 11px;
+      }
+
+      .thoughts-list {
+        border-top: 1px solid var(--line);
+      }
+
+      .thought {
+        display: grid;
+        grid-template-columns: 130px 1fr 30px;
+        gap: 28px;
+        padding: 29px 0;
+        border-bottom: 1px solid var(--line);
+        cursor: pointer;
+      }
+
+      .thought time {
+        padding-top: 7px;
+        color: var(--terracotta);
+        font-size: 10px;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+      }
+
+      .thought h3 {
+        margin: 0 0 7px;
+        font-size: 23px;
+        font-weight: 500;
+        letter-spacing: -0.04em;
+        line-height: 1.2;
+      }
+
+      .thought p {
+        max-width: 620px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .thought-arrow {
+        padding-top: 4px;
+        color: var(--terracotta);
+        font-size: 20px;
+      }
+
+      .thought-body {
+        display: none;
+        grid-column: 2 / 4;
+        max-width: 650px;
+        padding-top: 8px;
+        color: #4b4a43;
+        font-family: var(--serif);
+        font-size: 20px;
+        line-height: 1.45;
+      }
+
+      .thought.is-open .thought-body {
+        display: block;
+      }
+
+      .thought.is-open .thought-arrow {
+        transform: rotate(90deg);
+      }
+
+      @media (max-width: 700px) {
+        .thoughts-section {
+          width: min(100% - 40px, 1180px);
+          padding-top: 55px;
+        }
+
+        .thoughts-hero {
+          margin-bottom: 70px;
+        }
+
+        .inline-heading {
+          display: block;
+        }
+
+        .section-aside {
+          margin: -24px 0 30px;
+        }
+
+        .thought {
+          grid-template-columns: 1fr 25px;
+          gap: 8px 18px;
+        }
+
+        .thought time {
+          grid-column: 1 / 3;
+        }
+
+        .thought-body {
+          grid-column: 1 / 3;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- This is the current Thoughts view extracted from the portfolio. -->
+    <main class="thoughts-section">
+      <header class="thoughts-hero">
+        <p class="eyebrow">Notes, questions &amp; rabbit holes</p>
+        <h1>Things I'm <em>thinking about.</em></h1>
+        <p class="lede">
+          Not a blog exactly. More like a place to put things before they disappear
+          — lessons, observations, and the occasional unfinished thought.
+        </p>
+      </header>
+
+      <section aria-labelledby="writing-title">
+        <div class="inline-heading">
+          <div>
+            <p class="eyebrow">From the notebook</p>
+            <h2 id="writing-title">Recent thoughts<span class="accent">.</span></h2>
+          </div>
+          <span class="section-aside">updated when I have something to say</span>
+        </div>
+
+        <div class="thoughts-list">
+          <article class="thought">
+            <time datetime="2026-10">October 2026</time>
+            <div>
+              <h3>I’m trying to get better at finishing things</h3>
+              <p>I have more ideas than finished projects sometimes. I’m learning that choosing one thing and taking it to a usable version is its own skill.</p>
+            </div>
+            <span class="thought-arrow" aria-hidden="true">↘</span>
+            <div class="thought-body">
+              I like exploring ideas. One minute it’s a data project, the next it’s an AI tool or a small app that solves an everyday problem. That curiosity is useful, but it can also pull me in too many directions. I’m trying to put more value on finishing: making the basic version work, testing it, fixing what breaks, and letting someone else use it. A project doesn’t become better just because the idea behind it is ambitious. It becomes better when the details are handled and the thing actually works.
+            </div>
+          </article>
+
+          <article class="thought">
+            <time datetime="2026-09">September 2026</time>
+            <div>
+              <h3>Learning a tool isn’t the same as knowing what to do with it</h3>
+              <p>Knowing Python or SQL syntax is one thing. Knowing which question to ask, and how to check the answer, is another.</p>
+            </div>
+            <span class="thought-arrow" aria-hidden="true">↘</span>
+            <div class="thought-body">
+              It’s easy to measure progress by how many topics or libraries I’ve covered. But when I work on an analysis, the harder part is often deciding what I actually need to find out. Python can clean and transform data; SQL can help me pull the right rows; a chart can make a pattern easier to see. None of those tools can rescue a question that hasn’t been thought through. I want to get more comfortable explaining why I used a method, what the result means, and what it still doesn’t tell me.
+            </div>
+          </article>
+
+          <article class="thought">
+            <time datetime="2026-08">August 2026</time>
+            <div>
+              <h3>QPGen made the gap between an idea and a product feel real</h3>
+              <p>A working feature involves more than the part people see. There’s authentication, data, errors, and a lot of small decisions in between.</p>
+            </div>
+            <span class="thought-arrow" aria-hidden="true">↘</span>
+            <div class="thought-body">
+              With QPGen, the idea of generating question papers with AI was only the starting point. Turning that idea into an application meant thinking about the API, the database, user authentication, and how the different pieces fit together. Those parts aren’t as exciting to describe as the main feature, but they’re what make a project usable beyond a quick demo. It changed how I look at software: the visible feature is only one part of the work, and the unglamorous details deserve attention too.
+            </div>
+          </article>
+
+          <article class="thought">
+            <time datetime="2026-07">July 2026</time>
+            <div>
+              <h3>Messy data is usually where the real work starts</h3>
+              <p>Missing values, inconsistent labels, and awkward formats are not side quests. They’re often the first thing an analysis asks you to understand.</p>
+            </div>
+            <span class="thought-arrow" aria-hidden="true">↘</span>
+            <div class="thought-body">
+              A dataset can look ready to analyse until I start checking it closely. Then there are duplicates, empty fields, inconsistent categories, or values that don’t make sense together. It’s tempting to clean everything quickly and move on to the charts, but those decisions can change the result. I’m learning to pause and ask what a missing value means, whether two labels really refer to the same thing, and what I might lose by removing a row. Good analysis starts with understanding the data, not decorating it.
+            </div>
+          </article>
+
+          <article class="thought">
+            <time datetime="2026-06">June 2026</time>
+            <div>
+              <h3>Debugging is a lesson in being less attached to my first guess</h3>
+              <p>When something breaks, my first explanation is only a hypothesis. The useful part is checking it instead of defending it.</p>
+            </div>
+            <span class="thought-arrow" aria-hidden="true">↘</span>
+            <div class="thought-body">
+              I’ve learned that staring at a bug and hoping the answer appears is not much of a debugging strategy. It helps more to narrow the problem down: reproduce it, read the error, check the inputs, and change one thing at a time. Sometimes the issue is much smaller than I imagined; sometimes my understanding of the code was wrong. Neither is a disaster. I’d rather learn to investigate calmly than pretend I should get everything right on the first attempt.
+            </div>
+          </article>
+
+          <article class="thought">
+            <time datetime="2026-05">May 2026</time>
+            <div>
+              <h3>I don’t need my entire career figured out before I start</h3>
+              <p>I’m interested in data, Python, and building useful software. For now, doing the work is a better way to learn what fits than overthinking every possible path.</p>
+            </div>
+            <span class="thought-arrow" aria-hidden="true">↘</span>
+            <div class="thought-body">
+              I’ve spent time wondering which role I should aim for and which skills I should prioritise. Data analytics interests me because it combines problem-solving with making sense of information. Python also gives me a way to automate tasks and build things, while projects expose me to the engineering behind an idea. I don’t think I need to choose a permanent label for myself right now. I need a solid foundation, projects I can explain honestly, and enough experience to make the next decision with better information.
+            </div>
+          </article>
+
+          <article class="thought">
+            <time datetime="2026-04">April 2026</time>
+            <div>
+              <h3>Consistency looks less impressive than a fresh start</h3>
+              <p>Making a perfect plan feels productive. Coming back to the same skill and practising it again is what actually builds familiarity.</p>
+            </div>
+            <span class="thought-arrow" aria-hidden="true">↘</span>
+            <div class="thought-body">
+              I can spend too much time organising what I’m going to learn: the roadmap, the resources, the order of topics. Planning has its place, but it can become a comfortable substitute for doing the work. With Python and SQL, I need to write queries, solve small problems, make mistakes, and return to concepts I’ve forgotten. I’m trying to care less about having the perfect routine and more about making steady progress I can actually sustain.
+            </div>
+          </article>
+
+          <article class="thought">
+            <time datetime="2026-03">March 2026</time>
+            <div>
+              <h3>A chart is not the same thing as an insight</h3>
+              <p>A visual can make a result look convincing. I still need to know what it shows, what could explain it, and what it leaves out.</p>
+            </div>
+            <span class="thought-arrow" aria-hidden="true">↘</span>
+            <div class="thought-body">
+              Data analytics can make it tempting to jump straight from a dataset to a dashboard. But a clean chart is only useful if it answers a real question. I want to get better at looking beyond the obvious pattern, checking whether the comparison is fair, and being clear about uncertainty. Sometimes the honest conclusion is that the data isn’t enough to support a strong claim. That might sound less impressive, but it’s more useful than pretending the chart says more than it does.
+            </div>
+          </article>
+
+          <article class="thought">
+            <time datetime="2026-02">February 2026</time>
+            <div>
+              <h3>AI is useful, but I still want to understand what I’m building</h3>
+              <p>Getting an AI feature to work is exciting. Being able to explain its limits and handle what happens around it matters just as much.</p>
+            </div>
+            <span class="thought-arrow" aria-hidden="true">↘</span>
+            <div class="thought-body">
+              AI tools make it easier to experiment with ideas that once felt out of reach. But adding an API call doesn’t automatically make an application thoughtful or reliable. I still need to understand the inputs and outputs, handle failures, think about the user experience, and check whether the result is actually useful. I don’t want to use AI just because it sounds impressive in a project description. I want to understand where it helps, where it can go wrong, and what the rest of the software needs to do around it.
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      document.querySelectorAll(".thought").forEach((thought) => {
+        thought.addEventListener("click", () => {
+          thought.classList.toggle("is-open");
+        });
+      });
+    </script>
+  </body>
+</html>

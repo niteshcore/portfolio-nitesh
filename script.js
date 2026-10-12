@@ -11,8 +11,11 @@ const content = {
     ["2025", "Completed data analytics simulations with Deloitte and Accenture through Forage."]
   ],
   projects: [
-    ["01", "Netflix Movies & TV Shows Analysis", "Exploring 8,800+ records", "Cleaned and analyzed a Netflix dataset to identify trends across genres, ratings, release years, and content. Created visualizations with Matplotlib and Seaborn.", ["Python", "Pandas", "NumPy", "EDA", "Matplotlib", "Seaborn"]],
-    ["02", "QPGen", "AI Question Paper Generator", "Integrated the Google Gemini API to generate exam-oriented questions from syllabus input, with structured prompts, validation, retry logic, and JWT-based authentication.", ["Python", "Google Gemini API", "Prompt Engineering", "JWT"]]
+    ["01", "QPGen", "AI Question Paper Generator", "Built an AI-powered question bank and paper-generation studio for educators. It uses Google Gemini, structured prompts, validation, retry logic, JWT authentication, and grounded PDF content to create balanced papers with Bloom's Taxonomy in mind.", ["Python", "Flask", "React", "Google Gemini API", "RAG", "JWT"], "https://github.com/niteshcore/qpgen-ai"],
+    ["02", "Certificate Verification Portal", "Issuing and verifying internship certificates", "Created a production-ready SaaS application for issuing, managing, and verifying internship certificates, with a React frontend, Flask API, JWT authentication, and SQLite/PostgreSQL support.", ["React", "Vite", "Tailwind CSS", "Flask", "SQLAlchemy", "PostgreSQL"], "https://github.com/niteshcore/verify.futureanimations.in"],
+    ["03", "Netflix Movies & TV Shows Analysis", "Exploring 8,800+ records", "Cleaned and analyzed the Netflix Titles dataset to identify trends across genres, ratings, release years, and content type. Created heatmaps, trend charts, distribution plots, and word clouds to communicate the findings.", ["Python", "Pandas", "NumPy", "EDA", "Matplotlib", "Seaborn", "WordCloud"], "https://github.com/niteshcore/Netflix-Eda-Project"],
+    ["04", "MedPoint", "Medical appointment booking prototype", "Designed a responsive single-page healthcare prototype where users can book appointments, view clinic schedules, check doctor availability, and get symptom-based specialty recommendations. Demo data is persisted with localStorage.", ["HTML", "Tailwind CSS", "JavaScript", "LocalStorage"], "https://github.com/niteshcore/MedPoint"],
+    ["05", "The Indus Group", "Corporate website for a global trade group", "Built a multi-page corporate website presenting The Indus Group's work across global logistics, enterprise growth, professional skill development, and real estate, with dedicated service and company pages.", ["HTML", "CSS", "JavaScript", "Responsive Design"], "https://github.com/niteshcore/theindusgroupweb"]
   ],
   skills: [
     ["Programming", "Python · SQL"], ["Data Analysis", "Pandas · NumPy · Exploratory Data Analysis"], ["Data Visualization", "Power BI · Matplotlib"], ["Tools", "Git · GitHub · Jupyter Notebook · Google Colab · Microsoft Excel"]
@@ -33,7 +36,7 @@ const $ = (selector) => document.querySelector(selector);
 const render = () => {
   $("#snapshot-list").innerHTML = content.snapshots.map(([label, text]) => `<article class="snapshot-item"><span class="snapshot-label">${label}</span><p>${text}</p></article>`).join("");
   $("#updates-list").innerHTML = content.updates.map(([date, text]) => `<article class="update"><time>${date}</time><p>${text}</p></article>`).join("");
-  $("#projects-list").innerHTML = content.projects.map(([number, name, summary, description, tech]) => `<article class="project"><div class="project-head"><span class="project-number">${number}</span><div><h3>${name}</h3><p class="project-summary">${summary}</p></div><span class="project-toggle" aria-hidden="true">+</span></div><div class="project-detail"><p>${description}</p><div class="tech-list">${tech.map(item => `<span>${item}</span>`).join("")}</div></div></article>`).join("");
+  $("#projects-list").innerHTML = content.projects.map(([number, name, summary, description, tech, url]) => `<article class="project"><div class="project-head"><span class="project-number">${number}</span><div><h3>${name}</h3><p class="project-summary">${summary}</p></div><span class="project-toggle" aria-hidden="true">+</span></div><div class="project-detail"><p>${description}</p><div class="tech-list">${tech.map(item => `<span>${item}</span>`).join("")}</div><a class="project-link" href="${url}" target="_blank" rel="noopener">View repository <span>↗</span></a></div></article>`).join("");
   $("#experience-list").innerHTML = content.experience.map(([title, summary, description]) => `<article class="experience-item"><div><h3>${title}</h3><p class="project-summary">${summary}</p></div><p>${description}</p></article>`).join("");
   $("#skills-list").innerHTML = content.skills.map(([label, list]) => `<div class="skill-group"><h3>${label}</h3><p>${list}</p></div>`).join("");
   $("#credential-list").innerHTML = content.credentials.map(item => `<div class="credential">${item}</div>`).join("");
@@ -59,7 +62,7 @@ document.addEventListener("click", (event) => {
   if (viewButton) switchView(viewButton.dataset.view);
   if (viewJump) switchView(viewJump.dataset.viewJump);
   const project = event.target.closest(".project");
-  if (project) project.classList.toggle("is-open");
+  if (project && !event.target.closest("a")) project.classList.toggle("is-open");
   const thought = event.target.closest(".thought");
   if (thought) thought.classList.toggle("is-open");
 });
