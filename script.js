@@ -87,3 +87,7 @@ window.addEventListener("hashchange", () => {
   if (["me", "work", "thoughts"].includes(view)) switchView(view);
 });
 $("#year").textContent = new Date().getFullYear();
+$("#current-date").textContent = new Intl.DateTimeFormat("en-US", {
+  month: "long",
+  year: "numeric"
+}).format(new Date());
