@@ -1,10 +1,8 @@
 const content = {
   snapshots: [
-    ["Learning", "Python and SQL and the craft of turning data into useful insights."],
-    ["Building", "Data driven projects and practical AI applications."],
-    ["Thinking about", "Data analytics business intelligence and prompt engineering."],
-    ["Working with", "Messy datasets dashboards visualizations and real world questions."],
-    ["Goals", "Keep improving, keep building, and make analysis easier to understand."]
+    ["Learning", "Python, SQL & data analysis", "Getting better at working with data and finding useful insights."],
+    ["Building", "Projects that solve real problems", "Turning ideas into useful applications and experimenting with AI."],
+    ["Interested in", "Data, business & technology", "Exploring how data analytics and business intelligence help people make better decisions."]
   ],
   projects: [
     ["01", "QPGen", "AI Question Paper Generator", "Built an AI powered question bank and paper generation studio for educators. It uses Google Gemini with structured prompts validation retry logic JWT authentication and grounded PDF content to create balanced papers with Bloom's Taxonomy in mind.", ["Python", "Flask", "React", "Google Gemini API", "RAG", "JWT"], "https://github.com/niteshcore/qpgen-ai"],
@@ -43,7 +41,7 @@ const content = {
 const $ = (selector) => document.querySelector(selector);
 const cleanText = (text) => text.replace(/[,—–-]/g, "");
 const render = () => {
-  $("#snapshot-list").innerHTML = content.snapshots.map(([label, text]) => `<article class="snapshot-item"><span class="snapshot-label">${cleanText(label)}</span><p>${cleanText(text)}</p></article>`).join("");
+  $("#snapshot-list").innerHTML = content.snapshots.map(([label, title, description]) => `<article class="snapshot-item"><span class="snapshot-label">${cleanText(label)}</span><h3 class="snapshot-title">${cleanText(title)}</h3><p>${cleanText(description)}</p></article>`).join("");
   $("#projects-list").innerHTML = content.projects.map(([number, name, summary, description, tech, url]) => `<article class="project"><div class="project-head"><span class="project-number">${number}</span><div><h3>${cleanText(name)}</h3><p class="project-summary">${cleanText(summary)}</p></div><span class="project-toggle" aria-hidden="true">+</span></div><div class="project-detail"><p>${cleanText(description)}</p><div class="tech-list">${tech.map(item => `<span>${cleanText(item)}</span>`).join("")}</div><a class="project-link" href="${url}" target="_blank" rel="noopener">View repository <span>↗</span></a></div></article>`).join("");
   $("#experience-list").innerHTML = content.experience.map(([title, summary, description]) => `<article class="experience-item"><div><h3>${cleanText(title)}</h3><p class="project-summary">${cleanText(summary)}</p></div><p>${cleanText(description)}</p></article>`).join("");
   $("#skills-list").innerHTML = content.skills.map(([label, list]) => `<div class="skill-group"><h3>${label}</h3><p>${list}</p></div>`).join("");
