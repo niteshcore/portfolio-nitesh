@@ -6,10 +6,6 @@ const content = {
     ["Working with", "Messy datasets dashboards visualizations and real world questions."],
     ["Goals", "Keep improving, keep building, and make analysis easier to understand."]
   ],
-  updates: [
-    ["2026", "Building practical projects with Python and SQL and exploratory data analysis and AI tools."],
-    ["2025", "Completed data analytics simulations with Deloitte and Accenture through Forage."]
-  ],
   projects: [
     ["01", "QPGen", "AI Question Paper Generator", "Built an AI powered question bank and paper generation studio for educators. It uses Google Gemini with structured prompts validation retry logic JWT authentication and grounded PDF content to create balanced papers with Bloom's Taxonomy in mind.", ["Python", "Flask", "React", "Google Gemini API", "RAG", "JWT"], "https://github.com/niteshcore/qpgen-ai"],
     ["02", "Certificate Verification Portal", "Issuing and verifying internship certificates", "Created a production ready SaaS application for issuing managing and verifying internship certificates. It includes a React frontend Flask API JWT authentication and SQLite or PostgreSQL support.", ["React", "Vite", "Tailwind CSS", "Flask", "SQLAlchemy", "PostgreSQL"], "https://github.com/niteshcore/verify.futureanimations.in"],
@@ -48,12 +44,11 @@ const $ = (selector) => document.querySelector(selector);
 const cleanText = (text) => text.replace(/[,—–-]/g, "");
 const render = () => {
   $("#snapshot-list").innerHTML = content.snapshots.map(([label, text]) => `<article class="snapshot-item"><span class="snapshot-label">${cleanText(label)}</span><p>${cleanText(text)}</p></article>`).join("");
-  $("#updates-list").innerHTML = content.updates.map(([date, text]) => `<article class="update"><time>${cleanText(date)}</time><p>${cleanText(text)}</p></article>`).join("");
   $("#projects-list").innerHTML = content.projects.map(([number, name, summary, description, tech, url]) => `<article class="project"><div class="project-head"><span class="project-number">${number}</span><div><h3>${cleanText(name)}</h3><p class="project-summary">${cleanText(summary)}</p></div><span class="project-toggle" aria-hidden="true">+</span></div><div class="project-detail"><p>${cleanText(description)}</p><div class="tech-list">${tech.map(item => `<span>${cleanText(item)}</span>`).join("")}</div><a class="project-link" href="${url}" target="_blank" rel="noopener">View repository <span>↗</span></a></div></article>`).join("");
   $("#experience-list").innerHTML = content.experience.map(([title, summary, description]) => `<article class="experience-item"><div><h3>${cleanText(title)}</h3><p class="project-summary">${cleanText(summary)}</p></div><p>${cleanText(description)}</p></article>`).join("");
   $("#skills-list").innerHTML = content.skills.map(([label, list]) => `<div class="skill-group"><h3>${label}</h3><p>${list}</p></div>`).join("");
   $("#credential-list").innerHTML = content.credentials.map(([name, url]) => `<a class="credential" href="${url}" target="_blank" rel="noopener">${cleanText(name)}<span>View credential ↗</span></a>`).join("");
-  $("#thoughts-list").innerHTML = content.thoughts.map(([date, title, preview, body]) => `<article class="thought"><time>${cleanText(date)}</time><div><h3>${cleanText(title)}</h3><p>${cleanText(preview)}</p></div><span class="thought-arrow">↘</span><div class="thought-body">${cleanText(body)}</div></article>`).join("");
+  $("#thoughts-list").innerHTML = content.thoughts.map(([date, title, preview, body], index) => `<article class="thought" tabindex="0" role="button" aria-expanded="false" aria-controls="thought-body-${index}"><time>${cleanText(date)}</time><div><h3>${cleanText(title)}</h3><p>${cleanText(preview)}</p></div><span class="thought-arrow" aria-hidden="true">↘</span><div class="thought-body" id="thought-body-${index}">${cleanText(body)}</div></article>`).join("");
 };
 const switchView = (view) => {
   document.querySelectorAll(".view-button").forEach(button => {
@@ -77,14 +72,30 @@ document.addEventListener("click", (event) => {
   const project = event.target.closest(".project");
   if (project && !event.target.closest("a")) project.classList.toggle("is-open");
   const thought = event.target.closest(".thought");
-  if (thought) thought.classList.toggle("is-open");
+  if (thought) {
+    const isOpen = thought.classList.toggle("is-open");
+    thought.setAttribute("aria-expanded", isOpen);
+  }
+});
+document.addEventListener("keydown", (event) => {
+  if ((event.key === "Enter" || event.key === " ") && event.target.matches(".thought")) {
+    event.preventDefault();
+    event.target.click();
+  }
+});
+$(".thoughts-toggle").addEventListener("click", (event) => {
+  const toggle = event.currentTarget;
+  const content = $("#thoughts-content");
+  const isOpen = toggle.getAttribute("aria-expanded") === "true";
+  toggle.setAttribute("aria-expanded", !isOpen);
+  content.hidden = isOpen;
 });
 render();
-const initialView = ["me", "work", "thoughts"].includes(location.hash.slice(1)) ? location.hash.slice(1) : "me";
+const initialView = ["me", "work"].includes(location.hash.slice(1)) ? location.hash.slice(1) : "me";
 if (initialView !== "me") switchView(initialView);
 window.addEventListener("hashchange", () => {
   const view = location.hash.slice(1);
-  if (["me", "work", "thoughts"].includes(view)) switchView(view);
+  if (["me", "work"].includes(view)) switchView(view);
 });
 $("#year").textContent = new Date().getFullYear();
 $("#current-date").textContent = new Intl.DateTimeFormat("en-US", {

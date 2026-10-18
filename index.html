@@ -25,7 +25,6 @@
       <nav class="view-nav" aria-label="Primary navigation">
         <button class="view-button is-active" data-view="me" aria-pressed="true">Me</button>
         <button class="view-button" data-view="work" aria-pressed="false">Work</button>
-        <button class="view-button" data-view="thoughts" aria-pressed="false">Thoughts</button>
       </nav>
     </header>
 
@@ -68,13 +67,20 @@
           </div>
         </section>
 
-        <section class="updates-section" aria-labelledby="updates-title">
-          <div class="section-heading inline-heading">
-            <div><p class="eyebrow">Small notes from the road</p><h2 id="updates-title">Life updates<span class="accent">.</span></h2></div>
-            <span class="section-aside">in chronological order</span>
+        <section class="thoughts-section thoughts-collapsible" aria-labelledby="writing-title">
+          <button class="thoughts-toggle" type="button" aria-expanded="false" aria-controls="thoughts-content">
+            <span>
+              <span class="eyebrow">Notes questions &amp; rabbit holes</span>
+              <span class="thoughts-toggle-title" id="writing-title">Thoughts<span class="accent">.</span></span>
+            </span>
+            <span class="thoughts-toggle-icon" aria-hidden="true">+</span>
+          </button>
+          <div id="thoughts-content" class="thoughts-content" hidden>
+            <p class="thoughts-intro">A place to put things before they disappear. Lessons observations and unfinished thoughts.</p>
+            <div class="thoughts-list" id="thoughts-list"></div>
           </div>
-          <div id="updates-list" class="updates-list"></div>
         </section>
+
       </section>
 
       <section class="view-panel" data-panel="work" aria-labelledby="work-title" hidden>
@@ -98,10 +104,6 @@
         </div>
       </section>
 
-      <section class="view-panel" data-panel="thoughts" aria-labelledby="thoughts-title" hidden>
-        <div class="view-hero thoughts-hero"><p class="eyebrow">Notes questions &amp; rabbit holes</p><h1 id="thoughts-title">Things I'm <em>thinking about.</em></h1><p class="lede">Not quite a blog. Just a place to put things before they disappear. A place for lessons observations and unfinished thoughts.</p></div>
-        <section class="thoughts-section" aria-labelledby="writing-title"><div class="section-heading inline-heading"><div><p class="eyebrow">From the notebook</p><h2 id="writing-title">Recent thoughts<span class="accent">.</span></h2></div><span class="section-aside">updated when I have something to say</span></div><div class="thoughts-list" id="thoughts-list"></div></section>
-      </section>
     </main>
 
     <footer class="site-footer"><span>© <span id="year">2026</span> Nitesh Sharma</span><span>Made with data curiosity and care.</span><a href="mailto:niteshs11a@gmail.com">Say hello <span>↗</span></a></footer>
