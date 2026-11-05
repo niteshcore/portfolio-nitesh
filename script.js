@@ -46,7 +46,7 @@ const render = () => {
   $("#experience-list").innerHTML = content.experience.map(([title, summary, description]) => `<article class="experience-item"><div><h3>${cleanText(title)}</h3><p class="project-summary">${cleanText(summary)}</p></div><p>${cleanText(description)}</p></article>`).join("");
   $("#skills-list").innerHTML = content.skills.map(([label, list]) => `<div class="skill-group"><h3>${label}</h3><p>${list}</p></div>`).join("");
   $("#credential-list").innerHTML = content.credentials.map(([name, url]) => `<a class="credential" href="${url}" target="_blank" rel="noopener">${cleanText(name)}<span>View credential ↗</span></a>`).join("");
-  $("#thoughts-list").innerHTML = content.thoughts.map(([date, title, preview, body], index) => `<article class="thought" tabindex="0" role="button" aria-expanded="false" aria-controls="thought-body-${index}"><time>${cleanText(date)}</time><div><h3>${cleanText(title)}</h3><p>${cleanText(preview)}</p></div><span class="thought-arrow" aria-hidden="true">↘</span><div class="thought-body" id="thought-body-${index}">${cleanText(body)}</div></article>`).join("");
+  $("#thoughts-list").innerHTML = content.thoughts.slice(0, 3).map(([date, title, preview, body], index) => `<article class="thought" tabindex="0" role="button" aria-expanded="false" aria-controls="thought-body-${index}"><time>${cleanText(date)}</time><div><h3>${cleanText(title)}</h3><p>${cleanText(preview)}</p></div><span class="thought-arrow" aria-hidden="true">↘</span><div class="thought-body" id="thought-body-${index}">${cleanText(body)}</div></article>`).join("");
 };
 const switchView = (view) => {
   document.querySelectorAll(".view-button").forEach(button => {
