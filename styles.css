@@ -678,6 +678,11 @@ h2 {
     text-decoration:none
 }
 
+.social-links {
+    display:flex;
+    gap:18px
+}
+
 @media(max-width:780px) {
     .site-header,main,.site-footer {
         width:calc(100% - 38px)
