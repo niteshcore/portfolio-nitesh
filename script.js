@@ -58,13 +58,20 @@ const content = {
 };
 
 const $ = (selector) => document.querySelector(selector);
+// Phosphor icons (regular weight), inlined so there is no extra dependency.
+const icon = (path, extra = "") => `<svg class="icon${extra}" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="${path}"/></svg>`;
+const icons = {
+  arrow: icon("M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z", " icon-arrow"),
+  arrowDown: icon("M200,88V192a8,8,0,0,1-8,8H88a8,8,0,0,1,0-16h84.69L58.34,69.66A8,8,0,0,1,69.66,58.34L184,172.69V88a8,8,0,0,1,16,0Z"),
+  plus: icon("M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z")
+};
 const render = () => {
   $("#snapshot-list").innerHTML = content.snapshots.map(([label, title, description]) => `<article class="snapshot-item"><span class="snapshot-label">${label}</span><h3 class="snapshot-title">${title}</h3><p>${description}</p></article>`).join("");
-  $("#projects-list").innerHTML = content.projects.map(([number, name, summary, description, tech, links, images = []]) => `<article class="project"><div class="project-head"><span class="project-number">${number}</span><div><h3>${name}</h3><p class="project-summary">${summary}</p></div><span class="project-toggle" aria-hidden="true">+</span></div><div class="project-detail"><p>${description}</p><div class="tech-list">${tech.map(item => `<span>${item}</span>`).join("")}</div>${images.length ? `<div class="project-gallery">${images.map(([src, caption, alt]) => `<figure class="gallery-item"><button class="gallery-thumb" type="button" aria-label="Enlarge image: ${caption}"><img src="${src}" alt="${alt}" loading="lazy" /></button><figcaption>${caption}</figcaption></figure>`).join("")}</div>` : ""}<div class="project-links">${links.map(([label, url]) => `<a class="project-link" href="${url}" target="_blank" rel="noopener">${label} <span>↗</span></a>`).join("")}</div></div></article>`).join("");
+  $("#projects-list").innerHTML = content.projects.map(([number, name, summary, description, tech, links, images = []]) => `<article class="project"><div class="project-head" role="button" tabindex="0" aria-expanded="false"><span class="project-number">${number}</span><div><h3>${name}</h3><p class="project-summary">${summary}</p></div><span class="project-toggle" aria-hidden="true">${icons.plus}</span></div><div class="project-detail"><p>${description}</p><div class="tech-list">${tech.map(item => `<span>${item}</span>`).join("")}</div>${images.length ? `<div class="project-gallery">${images.map(([src, caption, alt]) => `<figure class="gallery-item"><button class="gallery-thumb" type="button" aria-label="Enlarge image: ${caption}"><img src="${src}" alt="${alt}" loading="lazy" /></button><figcaption>${caption}</figcaption></figure>`).join("")}</div>` : ""}<div class="project-links">${links.map(([label, url]) => `<a class="project-link" href="${url}" target="_blank" rel="noopener">${label} ${icons.arrow}</a>`).join("")}</div></div></article>`).join("");
   $("#experience-list").innerHTML = content.experience.map(([role, meta, points]) => `<article class="experience-item"><div><h3>${role}</h3><p class="project-summary">${meta}</p></div><ul>${points.map(point => `<li>${point}</li>`).join("")}</ul></article>`).join("");
   $("#skills-list").innerHTML = content.skills.map(([label, list]) => `<div class="skill-group"><h3>${label}</h3><p>${list}</p></div>`).join("");
-  $("#credential-list").innerHTML = content.credentials.map(([name, url]) => `<a class="credential" href="${url}" target="_blank" rel="noopener">${name}<span>View credential ↗</span></a>`).join("");
-  $("#thoughts-list").innerHTML = content.thoughts.slice(0, 3).map(([date, title, preview, body], index) => `<article class="thought" tabindex="0" role="button" aria-expanded="false" aria-controls="thought-body-${index}"><time>${date}</time><div><h3>${title}</h3><p>${preview}</p></div><span class="thought-arrow" aria-hidden="true">↘</span><div class="thought-body" id="thought-body-${index}">${body}</div></article>`).join("");
+  $("#credential-list").innerHTML = content.credentials.map(([name, url]) => `<a class="credential" href="${url}" target="_blank" rel="noopener">${name}<span>View credential ${icons.arrow}</span></a>`).join("");
+  $("#thoughts-list").innerHTML = content.thoughts.slice(0, 3).map(([date, title, preview, body], index) => `<article class="thought" tabindex="0" role="button" aria-expanded="false" aria-controls="thought-body-${index}"><time>${date}</time><div><h3>${title}</h3><p>${preview}</p></div><span class="thought-arrow" aria-hidden="true">${icons.arrowDown}</span><div class="thought-body" id="thought-body-${index}">${body}</div></article>`).join("");
 };
 const lightbox = $("#lightbox");
 const lightboxImage = $("#lightbox-image");
@@ -108,7 +115,10 @@ document.addEventListener("click", (event) => {
   const thumb = event.target.closest(".gallery-thumb");
   if (thumb) openLightbox(thumb);
   const project = event.target.closest(".project");
-  if (project && !event.target.closest("a, .project-gallery")) project.classList.toggle("is-open");
+  if (project && !event.target.closest("a, .project-gallery")) {
+    const isOpen = project.classList.toggle("is-open");
+    project.querySelector(".project-head").setAttribute("aria-expanded", isOpen);
+  }
   const thought = event.target.closest(".thought");
   if (thought) {
     const isOpen = thought.classList.toggle("is-open");
@@ -118,7 +128,7 @@ document.addEventListener("click", (event) => {
 document.addEventListener("keydown", (event) => {
   if (!lightbox.hidden && event.key === "Escape") closeLightbox();
   if (!lightbox.hidden && event.key === "Tab") event.preventDefault();
-  if ((event.key === "Enter" || event.key === " ") && event.target.matches(".thought")) {
+  if ((event.key === "Enter" || event.key === " ") && event.target.matches(".thought, .project-head")) {
     event.preventDefault();
     event.target.click();
   }
@@ -131,6 +141,67 @@ $(".thoughts-toggle").addEventListener("click", (event) => {
   content.hidden = isOpen;
 });
 render();
+
+// Sections rise and fade in once as they enter the viewport.
+const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+if ("IntersectionObserver" in window) {
+  const revealer = new IntersectionObserver((entries) => entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    entry.target.classList.add("is-revealed");
+    revealer.unobserve(entry.target);
+  }), { rootMargin: "0px 0px -10% 0px" });
+  document.querySelectorAll(".currently-section, .tagline-section, .about-strip, .thoughts-section, .experience-section, .projects-section, .skills-section, .credentials-section").forEach(section => {
+    section.classList.add("reveal");
+    revealer.observe(section);
+  });
+}
+
+// Tagline: each word lights up in reading order as the line scrolls past a trigger point.
+const tagline = $(".tagline");
+const words = [];
+[...tagline.childNodes].forEach(node => {
+  if (node.nodeType !== Node.TEXT_NODE) return;
+  const fragment = document.createDocumentFragment();
+  node.textContent.split(/(\s+)/).forEach(part => {
+    if (!part.trim()) return fragment.append(part);
+    const word = document.createElement("span");
+    word.className = "word";
+    word.textContent = part;
+    words.push(word);
+    fragment.append(word);
+  });
+  node.replaceWith(fragment);
+});
+let litCount = 0;
+let ticking = false;
+const lightWords = () => {
+  ticking = false;
+  if (!tagline.offsetParent) return;
+  const top = tagline.getBoundingClientRect().top;
+  const start = innerHeight * 0.85;
+  const end = innerHeight * 0.35;
+  const progress = Math.min(Math.max((start - top) / (start - end), 0), 1);
+  const target = Math.round(progress * words.length);
+  for (; litCount < target; litCount++) words[litCount].classList.add("is-lit");
+};
+const onScroll = () => {
+  if (!ticking) requestAnimationFrame(lightWords);
+  ticking = true;
+};
+if (reducedMotion || !("IntersectionObserver" in window)) {
+  words.forEach(word => word.classList.add("is-lit"));
+} else {
+  new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) {
+      addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+    } else {
+      removeEventListener("scroll", onScroll);
+      lightWords(); // if it left through the top, finish lighting it
+    }
+  }).observe(tagline);
+}
+
 const initialView = ["me", "work"].includes(location.hash.slice(1)) ? location.hash.slice(1) : "me";
 if (initialView !== "me") switchView(initialView);
 window.addEventListener("hashchange", () => {
