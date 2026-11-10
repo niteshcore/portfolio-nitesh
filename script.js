@@ -62,27 +62,38 @@ const $ = (selector) => document.querySelector(selector);
 const icon = (path, extra = "") => `<svg class="icon${extra}" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="${path}"/></svg>`;
 const icons = {
   arrow: icon("M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z", " icon-arrow"),
-  arrowDown: icon("M200,88V192a8,8,0,0,1-8,8H88a8,8,0,0,1,0-16h84.69L58.34,69.66A8,8,0,0,1,69.66,58.34L184,172.69V88a8,8,0,0,1,16,0Z"),
-  plus: icon("M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z")
+  arrowDown: icon("M200,88V192a8,8,0,0,1-8,8H88a8,8,0,0,1,0-16h84.69L58.34,69.66A8,8,0,0,1,69.66,58.34L184,172.69V88a8,8,0,0,1,16,0Z")
 };
+const thumb = ([src, caption, alt]) => `<figure class="gallery-item"><button class="gallery-thumb" type="button" aria-label="Enlarge image: ${caption}"><img src="${src}" alt="${alt}" loading="lazy" /></button><figcaption>${caption}</figcaption></figure>`;
+const projectBody = ([number, name, summary, description, tech, links]) => `<div class="project-body"><span class="project-number">${number}</span><h3>${name}</h3><p class="project-summary">${summary}</p><p class="project-description">${description}</p><ul class="tech-list">${tech.map(item => `<li>${item}</li>`).join("")}</ul><div class="project-links">${links.map(([label, url]) => `<a class="project-link" href="${url}" target="_blank" rel="noopener">${label} ${icons.arrow}</a>`).join("")}</div></div>`;
 const render = () => {
-  $("#snapshot-list").innerHTML = content.snapshots.map(([label, title, description]) => `<article class="snapshot-item"><span class="snapshot-label">${label}</span><h3 class="snapshot-title">${title}</h3><p>${description}</p></article>`).join("");
-  $("#projects-list").innerHTML = content.projects.map(([number, name, summary, description, tech, links, images = []]) => `<article class="project"><div class="project-head" role="button" tabindex="0" aria-expanded="false"><span class="project-number">${number}</span><div><h3>${name}</h3><p class="project-summary">${summary}</p></div><span class="project-toggle" aria-hidden="true">${icons.plus}</span></div><div class="project-detail"><p>${description}</p><div class="tech-list">${tech.map(item => `<span>${item}</span>`).join("")}</div>${images.length ? `<div class="project-gallery">${images.map(([src, caption, alt]) => `<figure class="gallery-item"><button class="gallery-thumb" type="button" aria-label="Enlarge image: ${caption}"><img src="${src}" alt="${alt}" loading="lazy" /></button><figcaption>${caption}</figcaption></figure>`).join("")}</div>` : ""}<div class="project-links">${links.map(([label, url]) => `<a class="project-link" href="${url}" target="_blank" rel="noopener">${label} ${icons.arrow}</a>`).join("")}</div></div></article>`).join("");
-  $("#experience-list").innerHTML = content.experience.map(([role, meta, points]) => `<article class="experience-item"><div><h3>${role}</h3><p class="project-summary">${meta}</p></div><ul>${points.map(point => `<li>${point}</li>`).join("")}</ul></article>`).join("");
-  $("#skills-list").innerHTML = content.skills.map(([label, list]) => `<div class="skill-group"><h3>${label}</h3><p>${list}</p></div>`).join("");
+  $("#snapshot-list").innerHTML = content.snapshots.map(([label, title, description]) => `<article class="snapshot-item"><span class="snapshot-label">${label}</span><h4 class="snapshot-title">${title}</h4><p>${description}</p></article>`).join("");
+  // Projects with screenshots get a wide card with a gallery; the rest sit in a grid below.
+  const withImages = content.projects.filter(project => project[6] && project[6].length);
+  const withoutImages = content.projects.filter(project => !project[6] || !project[6].length);
+  $("#featured-list").innerHTML = withImages.map(project => {
+    const [cover, ...rest] = project[6];
+    return `<article class="project-card project-card--featured"><div class="project-media">${thumb(cover)}${rest.length ? `<div class="project-gallery">${rest.map(thumb).join("")}</div>` : ""}</div>${projectBody(project)}</article>`;
+  }).join("");
+  $("#projects-list").innerHTML = withoutImages.map(project => `<article class="project-card">${projectBody(project)}</article>`).join("");
+  $("#experience-list").innerHTML = content.experience.map(([role, meta, points]) => `<article class="experience-item"><div><h3>${role}</h3><p class="item-meta">${meta}</p></div><ul>${points.map(point => `<li>${point}</li>`).join("")}</ul></article>`).join("");
+  $("#skills-list").innerHTML = content.skills.map(([label, list]) => `<div class="skill-group"><h3>${label}</h3><div class="skill-chips">${list.split(" · ").map(item => `<span class="skill-chip">${item}</span>`).join("")}</div></div>`).join("");
   $("#credential-list").innerHTML = content.credentials.map(([name, url]) => `<a class="credential" href="${url}" target="_blank" rel="noopener">${name}<span>View credential ${icons.arrow}</span></a>`).join("");
   $("#thoughts-list").innerHTML = content.thoughts.slice(0, 3).map(([date, title, preview, body], index) => `<article class="thought" tabindex="0" role="button" aria-expanded="false" aria-controls="thought-body-${index}"><time>${date}</time><div><h3>${title}</h3><p>${preview}</p></div><span class="thought-arrow" aria-hidden="true">${icons.arrowDown}</span><div class="thought-body" id="thought-body-${index}">${body}</div></article>`).join("");
 };
+render();
+
+// Lightbox
 const lightbox = $("#lightbox");
 const lightboxImage = $("#lightbox-image");
 let lightboxTrigger = null;
-const openLightbox = (thumb) => {
-  const image = thumb.querySelector("img");
+const openLightbox = (thumbButton) => {
+  const image = thumbButton.querySelector("img");
   lightboxImage.src = image.getAttribute("src");
   lightboxImage.alt = image.alt;
   lightbox.hidden = false;
   document.body.classList.add("lightbox-open");
-  lightboxTrigger = thumb;
+  lightboxTrigger = thumbButton;
   $(".lightbox-close").focus();
 };
 const closeLightbox = () => {
@@ -92,33 +103,21 @@ const closeLightbox = () => {
   if (lightboxTrigger) lightboxTrigger.focus();
   lightboxTrigger = null;
 };
-const switchView = (view) => {
-  document.querySelectorAll(".view-button").forEach(button => {
-    const active = button.dataset.view === view;
-    button.classList.toggle("is-active", active);
-    button.setAttribute("aria-pressed", active);
-  });
-  document.querySelectorAll(".view-panel").forEach(panel => {
-    const active = panel.dataset.panel === view;
-    panel.hidden = !active;
-    panel.classList.toggle("is-active", active);
-  });
-  history.replaceState(null, "", `#${view}`);
-  window.scrollTo({ top: 0, behavior: "smooth" });
+
+// Mobile menu
+const header = $(".site-header");
+const navToggle = $(".nav-toggle");
+const setMenu = (open) => {
+  header.classList.toggle("is-open", open);
+  navToggle.setAttribute("aria-expanded", open);
 };
+
 document.addEventListener("click", (event) => {
-  const viewButton = event.target.closest("[data-view]");
-  const viewJump = event.target.closest("[data-view-jump]");
-  if (viewButton) switchView(viewButton.dataset.view);
-  if (viewJump) switchView(viewJump.dataset.viewJump);
+  if (event.target.closest(".nav-toggle")) setMenu(!header.classList.contains("is-open"));
+  else if (event.target.closest(".site-nav a")) setMenu(false);
   if (!lightbox.hidden && event.target !== lightboxImage) closeLightbox();
-  const thumb = event.target.closest(".gallery-thumb");
-  if (thumb) openLightbox(thumb);
-  const project = event.target.closest(".project");
-  if (project && !event.target.closest("a, .project-gallery")) {
-    const isOpen = project.classList.toggle("is-open");
-    project.querySelector(".project-head").setAttribute("aria-expanded", isOpen);
-  }
+  const thumbButton = event.target.closest(".gallery-thumb");
+  if (thumbButton) openLightbox(thumbButton);
   const thought = event.target.closest(".thought");
   if (thought) {
     const isOpen = thought.classList.toggle("is-open");
@@ -126,21 +125,36 @@ document.addEventListener("click", (event) => {
   }
 });
 document.addEventListener("keydown", (event) => {
-  if (!lightbox.hidden && event.key === "Escape") closeLightbox();
+  if (event.key === "Escape") {
+    if (!lightbox.hidden) closeLightbox();
+    if (header.classList.contains("is-open")) setMenu(false);
+  }
   if (!lightbox.hidden && event.key === "Tab") event.preventDefault();
-  if ((event.key === "Enter" || event.key === " ") && event.target.matches(".thought, .project-head")) {
+  if ((event.key === "Enter" || event.key === " ") && event.target.matches(".thought")) {
     event.preventDefault();
     event.target.click();
   }
 });
-$(".thoughts-toggle").addEventListener("click", (event) => {
-  const toggle = event.currentTarget;
-  const content = $("#thoughts-content");
-  const isOpen = toggle.getAttribute("aria-expanded") === "true";
-  toggle.setAttribute("aria-expanded", !isOpen);
-  content.hidden = isOpen;
-});
-render();
+
+// Current section in the nav
+const navLinks = [...document.querySelectorAll(".site-nav a")];
+const navSections = navLinks.map(link => document.querySelector(link.getAttribute("href"))).filter(Boolean);
+let navTicking = false;
+const markCurrent = () => {
+  navTicking = false;
+  const marker = innerHeight * 0.35;
+  let active = null;
+  for (const section of navSections) if (section.getBoundingClientRect().top <= marker) active = section;
+  navLinks.forEach(link => {
+    if (active && link.getAttribute("href") === `#${active.id}`) link.setAttribute("aria-current", "true");
+    else link.removeAttribute("aria-current");
+  });
+};
+addEventListener("scroll", () => {
+  if (!navTicking) requestAnimationFrame(markCurrent);
+  navTicking = true;
+}, { passive: true });
+markCurrent();
 
 // Sections rise and fade in once as they enter the viewport.
 const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -150,9 +164,9 @@ if ("IntersectionObserver" in window) {
     entry.target.classList.add("is-revealed");
     revealer.unobserve(entry.target);
   }), { rootMargin: "0px 0px -10% 0px" });
-  document.querySelectorAll(".currently-section, .tagline-section, .about-strip, .thoughts-section, .experience-section, .projects-section, .skills-section, .credentials-section").forEach(section => {
-    section.classList.add("reveal");
-    revealer.observe(section);
+  document.querySelectorAll(".section > .container, .tagline-section").forEach(block => {
+    block.classList.add("reveal");
+    revealer.observe(block);
   });
 }
 
@@ -176,7 +190,6 @@ let litCount = 0;
 let ticking = false;
 const lightWords = () => {
   ticking = false;
-  if (!tagline.offsetParent) return;
   const top = tagline.getBoundingClientRect().top;
   const start = innerHeight * 0.85;
   const end = innerHeight * 0.35;
@@ -202,12 +215,6 @@ if (reducedMotion || !("IntersectionObserver" in window)) {
   }).observe(tagline);
 }
 
-const initialView = ["me", "work"].includes(location.hash.slice(1)) ? location.hash.slice(1) : "me";
-if (initialView !== "me") switchView(initialView);
-window.addEventListener("hashchange", () => {
-  const view = location.hash.slice(1);
-  if (["me", "work"].includes(view)) switchView(view);
-});
 $("#year").textContent = new Date().getFullYear();
 $("#current-date").textContent = new Intl.DateTimeFormat("en-US", {
   month: "long",

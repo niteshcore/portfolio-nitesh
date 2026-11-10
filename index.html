@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Nitesh Sharma — final-year CS student who ships secure web apps with AI coding agents, and explores data with Python, SQL and Power BI." />
-    <meta name="theme-color" content="#fbfaf6" />
+    <meta name="theme-color" content="#ffffff" />
     <meta property="og:title" content="Nitesh Sharma. A corner of the internet" />
     <meta property="og:description" content="Nitesh Sharma — final-year CS student who ships secure web apps with AI coding agents, and explores data with Python, SQL and Power BI." />
     <meta property="og:type" content="website" />
@@ -14,105 +14,144 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23111111'/%3E%3Crect x='2' y='2' width='18' height='18' fill='%23d7261e'/%3E%3Crect x='22' y='2' width='8' height='18' fill='%23fbfaf6'/%3E%3Crect x='2' y='22' width='10' height='8' fill='%23fbfaf6'/%3E%3Crect x='14' y='22' width='6' height='8' fill='%231f4e9a'/%3E%3Crect x='22' y='22' width='8' height='8' fill='%23e6bc2a'/%3E%3C/svg%3E" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231f55d4'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='Arial,sans-serif' font-size='17' font-weight='700' fill='white'%3EN%3C/text%3E%3C/svg%3E" />
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
     <header class="site-header">
-      <a class="wordmark" href="#me" data-view-link="me" aria-label="Nitesh Sharma home">
-        <span>Nitesh Sharma</span>
-        <small>learning in public, mostly</small>
-      </a>
-      <nav class="view-nav" aria-label="Primary navigation">
-        <button class="view-button is-active" data-view="me" aria-pressed="true">Me</button>
-        <button class="view-button" data-view="work" aria-pressed="false">Work</button>
+      <a class="wordmark" href="#top">Nitesh Sharma</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#writing">Writing</a>
+        <a href="#contact">Contact</a>
       </nav>
+      <a class="button-link button-link--small" href="nitesh-details/Nitesh_Sharma_Resume.pdf" target="_blank" rel="noopener" aria-label="View resume">Resume <svg class="icon icon-arrow" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg></a>
     </header>
 
     <main id="main-content">
-      <section class="view-panel is-active" data-panel="me" aria-labelledby="me-title">
-        <div class="me-intro">
-          <div class="intro-copy">
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <div class="container hero-grid">
+          <div class="hero-copy">
             <p class="eyebrow">Hello, I'm Nitesh <span class="eyebrow-dot" role="img" aria-label="spider-sense"></span></p>
-            <h1 id="me-title">Still figuring it out.<br /><em>Enjoying the process.</em></h1>
+            <h1 id="hero-title">Still figuring it out.<br /><em>Enjoying the process.</em></h1>
             <p class="lede">I'm a final-year Computer Science student who ships secure web apps by directing AI coding agents like Claude Code, Codex and VS Code Chat. The agents write the code; I own the product decisions, database design and security.</p>
             <p class="lede lede-small">I'm also into data analytics: Python, SQL and Power BI.</p>
-            <div class="intro-actions">
-              <button class="text-link" data-view-jump="work">See what I've been building <svg class="icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg></button>
-              <span class="location-note hero-links"><a href="https://github.com/niteshcore" target="_blank" rel="noopener">GitHub <svg class="icon icon-arrow" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg></a><a href="https://www.linkedin.com/in/niteshscore/" target="_blank" rel="noopener">LinkedIn <svg class="icon icon-arrow" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg></a></span>
-              <span class="location-note">New Delhi, India · <span id="current-date"></span></span>
+            <div class="hero-actions">
+              <a class="button-link" href="#projects">See what I've been building <svg class="icon icon-arrow" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg></a>
+              <span class="hero-links"><a href="https://github.com/niteshcore" target="_blank" rel="noopener">GitHub <svg class="icon icon-arrow" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg></a><a href="https://www.linkedin.com/in/niteshscore/" target="_blank" rel="noopener">LinkedIn <svg class="icon icon-arrow" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg></a></span>
             </div>
+            <p class="location-note">New Delhi, India · <span id="current-date"></span></p>
           </div>
-          <figure class="portrait-wrap">
-            <div class="portrait-frame">
-              <img src="nitesh-details/NiteshPortrait.jpg" alt="Portrait of Nitesh Sharma" />
-              <span class="portrait-caption">somewhere between<br />thinking &amp; doing</span>
-            </div>
+          <figure class="portrait">
+            <img src="nitesh-details/NiteshPortrait.jpg" alt="Portrait of Nitesh Sharma" />
             <figcaption>one tab away from a new obsession.</figcaption>
           </figure>
         </div>
+      </section>
 
-        <div class="section-rule"></div>
-        <section class="currently-section" aria-labelledby="currently-title">
-          <div class="section-heading">
-            <p class="eyebrow">A live snapshot</p>
-            <h2 id="currently-title">Currently<span class="accent">.</span></h2>
-          </div>
-          <div class="snapshot-list" id="snapshot-list"></div>
-        </section>
-
-        <section class="tagline-section">
-          <p class="tagline">The agent is fast.<br />Being responsible for what it ships is still my job.</p>
-        </section>
-
-        <section class="about-strip">
-          <div class="about-label">A little more<br />about me</div>
+      <section class="section section--soft" id="about" aria-labelledby="about-title">
+        <div class="container about-grid">
           <div class="about-copy">
-            <p>I'm interested in the space where <strong>ideas become working software</strong>. I've built a certificate verification portal for an animation studio, I'm building a full coaching-institute platform for a client, and I made QPGen, an AI question paper generator. On the side, I enjoy cleaning messy datasets and finding patterns in them.</p>
+            <p class="eyebrow">A little more about me</p>
+            <h2 id="about-title">About<span class="accent">.</span></h2>
+            <p class="about-lead">I'm interested in the space where <strong>ideas become working software</strong>. I've built a certificate verification portal for an animation studio, I'm building a full coaching-institute platform for a client, and I made QPGen, an AI question paper generator. On the side, I enjoy cleaning messy datasets and finding patterns in them.</p>
             <p>I'm currently pursuing a B.Tech in Computer Science &amp; Engineering at K.R. Mangalam University. I expect to graduate in July 2027.</p>
           </div>
-        </section>
+          <aside class="snapshot-card" aria-labelledby="currently-title">
+            <p class="eyebrow">A live snapshot</p>
+            <h3 class="snapshot-heading" id="currently-title">Currently<span class="accent">.</span></h3>
+            <div class="snapshot-list" id="snapshot-list"></div>
+          </aside>
+        </div>
+      </section>
 
-        <section class="thoughts-section thoughts-collapsible" aria-labelledby="writing-title">
-          <button class="thoughts-toggle" type="button" aria-expanded="false" aria-controls="thoughts-content">
-            <span>
-              <span class="eyebrow">Notes, questions &amp; rabbit holes</span>
-              <span class="thoughts-toggle-title" id="writing-title">Thoughts<span class="accent">.</span></span>
-            </span>
-            <span class="thoughts-toggle-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 256 256" focusable="false"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></svg></span>
-          </button>
-          <div id="thoughts-content" class="thoughts-content" hidden>
-            <p class="thoughts-intro">A place to put things before they disappear. Lessons, observations and unfinished thoughts.</p>
-            <div class="thoughts-list" id="thoughts-list"></div>
+      <div class="tagline-section">
+        <div class="container">
+          <p class="tagline">The agent is fast.<br />Being responsible for what it ships is still my job.</p>
+        </div>
+      </div>
+
+      <section class="section" id="experience" aria-labelledby="experience-title">
+        <div class="container">
+          <div class="section-head">
+            <p class="eyebrow">Where I've worked</p>
+            <h2 id="experience-title">Experience<span class="accent">.</span></h2>
           </div>
-        </section>
-
-      </section>
-
-      <section class="view-panel" data-panel="work" aria-labelledby="work-title" hidden>
-        <div class="view-hero">
-          <p class="eyebrow">The professional side</p>
-          <h1 id="work-title">Things I've <em>Built.</em></h1>
-          <p class="lede">A collection of projects, experiments, and skills picked up by making real things instead of collecting certificates and percentages.</p>
-          <a class="button-link resume-link" href="nitesh-details/Nitesh_Sharma_Resume-3.pdf" target="_blank" rel="noopener" aria-label="View resume">View Resume <svg class="icon icon-arrow" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg></a>
-        </div>
-        <section class="experience-section" aria-labelledby="experience-title">
-          <div class="section-heading inline-heading"><div><p class="eyebrow">Where I've worked</p><h2 id="experience-title">Experience<span class="accent">.</span></h2></div></div>
           <div class="experience-list" id="experience-list"></div>
-        </section>
-        <section class="projects-section" aria-labelledby="projects-title">
-          <div class="section-heading inline-heading"><div><p class="eyebrow">Selected work</p><h2 id="projects-title">Projects<span class="accent">.</span></h2></div><span class="section-aside">click a project to open it</span></div>
-          <div class="projects-list" id="projects-list"></div>
-        </section>
-        <div class="work-grid">
-          <section class="skills-section" aria-labelledby="skills-title"><p class="eyebrow">The toolkit</p><h2 id="skills-title">Skills<span class="accent">.</span></h2><div id="skills-list" class="skills-list"></div></section>
-          <section class="credentials-section" aria-labelledby="education-title"><p class="eyebrow">The groundwork</p><h2 id="education-title">Education &amp; credentials<span class="accent">.</span></h2><div class="education-item"><span class="item-year">Expected July 2027</span><h3>B.Tech Computer Science &amp; Engineering</h3><p>K.R. Mangalam University · Haryana, India</p></div><div class="credential-list" id="credential-list"></div></section>
         </div>
       </section>
 
+      <section class="section section--soft" id="projects" aria-labelledby="projects-title">
+        <div class="container">
+          <div class="section-head">
+            <p class="eyebrow">Selected work</p>
+            <h2 id="projects-title">Projects<span class="accent">.</span></h2>
+          </div>
+          <div class="featured-list" id="featured-list"></div>
+          <div class="projects-grid" id="projects-list"></div>
+        </div>
+      </section>
+
+      <section class="section" id="skills" aria-labelledby="skills-title">
+        <div class="container">
+          <div class="section-head">
+            <p class="eyebrow">The toolkit</p>
+            <h2 id="skills-title">Skills<span class="accent">.</span></h2>
+          </div>
+          <div class="skills-list" id="skills-list"></div>
+        </div>
+      </section>
+
+      <section class="section section--soft" id="education" aria-labelledby="education-title">
+        <div class="container education-grid">
+          <div>
+            <div class="section-head">
+              <p class="eyebrow">The groundwork</p>
+              <h2 id="education-title">Education &amp; credentials<span class="accent">.</span></h2>
+            </div>
+            <div class="education-card">
+              <span class="item-year">Expected July 2027</span>
+              <h3>B.Tech Computer Science &amp; Engineering</h3>
+              <p>K.R. Mangalam University · Gurugram, Haryana</p>
+            </div>
+          </div>
+          <div class="credential-list" id="credential-list"></div>
+        </div>
+      </section>
+
+      <section class="section" id="writing" aria-labelledby="writing-title">
+        <div class="container">
+          <div class="section-head">
+            <p class="eyebrow">Notes, questions &amp; rabbit holes</p>
+            <h2 id="writing-title">Thoughts<span class="accent">.</span></h2>
+            <p class="section-intro">A place to put things before they disappear. Lessons, observations and unfinished thoughts.</p>
+          </div>
+          <div class="thoughts-list" id="thoughts-list"></div>
+        </div>
+      </section>
     </main>
 
-    <footer class="site-footer"><span>© <span id="year">2026</span> Nitesh Sharma</span><span>Made with data, curiosity, and care.</span><span class="social-links"><a href="https://github.com/niteshcore" target="_blank" rel="noopener">GitHub <svg class="icon icon-arrow" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg></a><a href="https://www.linkedin.com/in/niteshscore/" target="_blank" rel="noopener">LinkedIn <svg class="icon icon-arrow" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg></a><a href="mailto:niteshs11a@gmail.com">Say hello <svg class="icon icon-arrow" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg></a></span></footer>
+    <footer class="site-footer" id="contact">
+      <div class="container">
+        <div class="contact-block">
+          <h2 class="contact-title">Say hello<span class="accent">.</span></h2>
+          <a class="contact-email" href="mailto:niteshs11a@gmail.com">niteshs11a@gmail.com</a>
+          <div class="social-links">
+            <a href="https://github.com/niteshcore" target="_blank" rel="noopener">GitHub <svg class="icon icon-arrow" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg></a>
+            <a href="https://www.linkedin.com/in/niteshscore/" target="_blank" rel="noopener">LinkedIn <svg class="icon icon-arrow" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg></a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>© <span id="year">2026</span> Nitesh Sharma</span>
+          <span>Made with data, curiosity, and care.</span>
+        </div>
+      </div>
+    </footer>
+
     <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged project image" hidden>
       <button class="lightbox-close" type="button" aria-label="Close image"><svg class="icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg></button>
       <img id="lightbox-image" alt="" />
