@@ -113,6 +113,12 @@ const setMenu = (open) => {
 };
 
 document.addEventListener("click", (event) => {
+  const sectionLink = event.target.closest('a[href^="#"]');
+  const sectionId = sectionLink?.getAttribute("href").slice(1);
+  if (sectionId && pageSections.some(section => section.dataset.pageSection === sectionId)) {
+    event.preventDefault();
+    setActiveSection(sectionId);
+  }
   if (event.target.closest(".nav-toggle")) setMenu(!header.classList.contains("is-open"));
   else if (event.target.closest(".site-nav a")) setMenu(false);
   if (!lightbox.hidden && event.target !== lightboxImage) closeLightbox();
@@ -136,39 +142,36 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-// Current section in the nav
+// Switch between page sections without scrolling the document.
 const navLinks = [...document.querySelectorAll(".site-nav a")];
-const navSections = navLinks.map(link => document.querySelector(link.getAttribute("href"))).filter(Boolean);
-let navTicking = false;
-const markCurrent = () => {
-  navTicking = false;
-  const marker = innerHeight * 0.35;
-  let active = null;
-  for (const section of navSections) if (section.getBoundingClientRect().top <= marker) active = section;
+const pageSections = [...document.querySelectorAll("[data-page-section]")];
+const setActiveSection = (id, updateHash = true) => {
+  const active = pageSections.find(section => section.dataset.pageSection === id) || pageSections.find(section => section.dataset.pageSection === "top");
+  const activeId = active.dataset.pageSection;
+  pageSections.forEach(section => {
+    const isActive = section.dataset.pageSection === activeId;
+    section.classList.toggle("is-active", isActive);
+    section.setAttribute("aria-hidden", String(!isActive));
+  });
   navLinks.forEach(link => {
-    if (active && link.getAttribute("href") === `#${active.id}`) link.setAttribute("aria-current", "true");
+    if (link.getAttribute("href") === `#${activeId}`) link.setAttribute("aria-current", "true");
     else link.removeAttribute("aria-current");
   });
+  if (updateHash && location.hash !== `#${activeId}`) history.pushState(null, "", `#${activeId}`);
+  setMenu(false);
 };
-addEventListener("scroll", () => {
-  if (!navTicking) requestAnimationFrame(markCurrent);
-  navTicking = true;
-}, { passive: true });
-markCurrent();
+navLinks.forEach(link => link.addEventListener("click", event => {
+  event.preventDefault();
+  setActiveSection(link.getAttribute("href").slice(1));
+}));
+addEventListener("popstate", () => setActiveSection(location.hash.slice(1), false));
+addEventListener("hashchange", () => setActiveSection(location.hash.slice(1), false));
+setActiveSection(location.hash.slice(1), false);
 
-// Sections rise and fade in once as they enter the viewport.
-const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
-if ("IntersectionObserver" in window) {
-  const revealer = new IntersectionObserver((entries) => entries.forEach(entry => {
-    if (!entry.isIntersecting) return;
-    entry.target.classList.add("is-revealed");
-    revealer.unobserve(entry.target);
-  }), { rootMargin: "0px 0px -10% 0px" });
-  document.querySelectorAll(".section > .container, .tagline-section").forEach(block => {
-    block.classList.add("reveal");
-    revealer.observe(block);
-  });
-}
+// Sections reveal their content when they are first opened.
+document.querySelectorAll(".section > .container, .tagline-section > .container").forEach(block => {
+  block.classList.add("is-revealed");
+});
 
 // Tagline: each word lights up in reading order as the line scrolls past a trigger point.
 const tagline = $(".tagline");
@@ -186,34 +189,7 @@ const words = [];
   });
   node.replaceWith(fragment);
 });
-let litCount = 0;
-let ticking = false;
-const lightWords = () => {
-  ticking = false;
-  const top = tagline.getBoundingClientRect().top;
-  const start = innerHeight * 0.85;
-  const end = innerHeight * 0.35;
-  const progress = Math.min(Math.max((start - top) / (start - end), 0), 1);
-  const target = Math.round(progress * words.length);
-  for (; litCount < target; litCount++) words[litCount].classList.add("is-lit");
-};
-const onScroll = () => {
-  if (!ticking) requestAnimationFrame(lightWords);
-  ticking = true;
-};
-if (reducedMotion || !("IntersectionObserver" in window)) {
-  words.forEach(word => word.classList.add("is-lit"));
-} else {
-  new IntersectionObserver(([entry]) => {
-    if (entry.isIntersecting) {
-      addEventListener("scroll", onScroll, { passive: true });
-      onScroll();
-    } else {
-      removeEventListener("scroll", onScroll);
-      lightWords(); // if it left through the top, finish lighting it
-    }
-  }).observe(tagline);
-}
+words.forEach(word => word.classList.add("is-lit"));
 
 $("#year").textContent = new Date().getFullYear();
 $("#current-date").textContent = new Intl.DateTimeFormat("en-US", {

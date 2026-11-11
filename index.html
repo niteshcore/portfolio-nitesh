@@ -22,10 +22,12 @@
       <a class="wordmark" href="#top">Nitesh Sharma</a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
       <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+        <a href="#top" aria-current="true">Home</a>
         <a href="#about">About</a>
         <a href="#experience">Experience</a>
         <a href="#projects">Projects</a>
         <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
         <a href="#writing">Writing</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -33,8 +35,8 @@
     </header>
 
     <main id="main-content">
-      <section class="hero" id="top" aria-labelledby="hero-title">
-        <div class="container hero-grid">
+      <section class="hero page-section is-active" id="top" data-page-section="top" aria-labelledby="hero-title">
+        <div class="container">
           <div class="hero-copy">
             <p class="eyebrow">Hello, I'm Nitesh <span class="eyebrow-dot" role="img" aria-label="spider-sense"></span></p>
             <h1 id="hero-title">Still figuring it out.<br /><em>Enjoying the process.</em></h1>
@@ -46,14 +48,10 @@
             </div>
             <p class="location-note">New Delhi, India · <span id="current-date"></span></p>
           </div>
-          <figure class="portrait">
-            <img src="nitesh-details/NiteshPortrait.jpg" alt="Portrait of Nitesh Sharma" />
-            <figcaption>one tab away from a new obsession.</figcaption>
-          </figure>
         </div>
       </section>
 
-      <section class="section section--soft" id="about" aria-labelledby="about-title">
+      <section class="section section--soft page-section" id="about" data-page-section="about" aria-labelledby="about-title">
         <div class="container about-grid">
           <div class="about-copy">
             <p class="eyebrow">A little more about me</p>
@@ -69,13 +67,13 @@
         </div>
       </section>
 
-      <div class="tagline-section">
+      <div class="tagline-section page-section" data-page-section="about" aria-hidden="true">
         <div class="container">
           <p class="tagline">The agent is fast.<br />Being responsible for what it ships is still my job.</p>
         </div>
       </div>
 
-      <section class="section" id="experience" aria-labelledby="experience-title">
+      <section class="section page-section" id="experience" data-page-section="experience" aria-labelledby="experience-title">
         <div class="container">
           <div class="section-head">
             <p class="eyebrow">Where I've worked</p>
@@ -85,7 +83,7 @@
         </div>
       </section>
 
-      <section class="section section--soft" id="projects" aria-labelledby="projects-title">
+      <section class="section section--soft page-section" id="projects" data-page-section="projects" aria-labelledby="projects-title">
         <div class="container">
           <div class="section-head">
             <p class="eyebrow">Selected work</p>
@@ -96,7 +94,7 @@
         </div>
       </section>
 
-      <section class="section" id="skills" aria-labelledby="skills-title">
+      <section class="section page-section" id="skills" data-page-section="skills" aria-labelledby="skills-title">
         <div class="container">
           <div class="section-head">
             <p class="eyebrow">The toolkit</p>
@@ -106,7 +104,7 @@
         </div>
       </section>
 
-      <section class="section section--soft" id="education" aria-labelledby="education-title">
+      <section class="section section--soft page-section" id="education" data-page-section="education" aria-labelledby="education-title">
         <div class="container education-grid">
           <div>
             <div class="section-head">
@@ -123,7 +121,7 @@
         </div>
       </section>
 
-      <section class="section" id="writing" aria-labelledby="writing-title">
+      <section class="section page-section" id="writing" data-page-section="writing" aria-labelledby="writing-title">
         <div class="container">
           <div class="section-head">
             <p class="eyebrow">Notes, questions &amp; rabbit holes</p>
@@ -135,10 +133,10 @@
       </section>
     </main>
 
-    <footer class="site-footer" id="contact">
+    <footer class="site-footer page-section" id="contact" data-page-section="contact" aria-labelledby="contact-title">
       <div class="container">
         <div class="contact-block">
-          <h2 class="contact-title">Say hello<span class="accent">.</span></h2>
+          <h2 class="contact-title" id="contact-title">Say hello<span class="accent">.</span></h2>
           <a class="contact-email" href="mailto:niteshs11a@gmail.com">niteshs11a@gmail.com</a>
           <div class="social-links">
             <a href="https://github.com/niteshcore" target="_blank" rel="noopener">GitHub <svg class="icon icon-arrow" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg></a>
